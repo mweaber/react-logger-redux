@@ -6,9 +6,10 @@ import {
   DELETE_LOG,
   UPDATE_LOG,
   SET_CURRENT,
-  CLEAR_CURRENT
+  CLEAR_CURRENT,
+  SEARCH_LOGS
 } from '../actions/types';
-import { localeData } from 'moment';
+import { localData } from 'moment';
 
 const initialState = {
   logs: null,
@@ -65,12 +66,20 @@ export default (state = initialState, action) => {
         ...state,
         loading: true
       };
+
     case LOGS_ERROR:
       console.error(action.payload);
       return {
         ...state,
         error: action.payload
       };
+
+      case SEARCH_LOGS: 
+      return {
+        ...state,
+        logs: action.payload
+      }
+
     default:
       return state;
   }

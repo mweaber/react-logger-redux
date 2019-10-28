@@ -145,11 +145,11 @@ export const searchLogs = (text) => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch('/logs');
+    const res = await fetch(`/logs?q=${text}`);
     const data = await res.json();
 
     dispatch({
-      type: GET_LOGS,
+      type: SEARCH_LOGS,
       payload: data
     });
   } catch (error) {
